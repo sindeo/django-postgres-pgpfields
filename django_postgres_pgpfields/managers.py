@@ -39,5 +39,5 @@ class PGPEncryptedManager(models.Manager):
                     settings.PGPFIELDS_PRIVATE_KEY,
                 )
                 encrypted_fields.append(field.name)
-        return PGPEncryptedManager.get_queryset(
+        return models.Manager.get_queryset(self,
             *args, **kwargs).defer(*encrypted_fields).extra(select=select_sql)
